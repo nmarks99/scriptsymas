@@ -1,2 +1,2 @@
-# Scripts
-These are some useful scripts/short programs I have wrote which I would like to save. There are also some that I am still testing/learning about.
+# scripts y más 
+This repo contains various scripts and short programs which I didn't think deserved their own repository. Some are very useful, others less so. Feel free to use them as you please.

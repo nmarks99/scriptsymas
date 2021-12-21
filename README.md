@@ -15,7 +15,7 @@
 `rmspace.py` replaces spaces with underscores in filenames for all files in the directory in which the script is run.
 
 # wr
-`wr.c` prints the weather report for your current location in the terminal window. Running `wr 1` with give a shortened version of the report that is just one line.
+`wr.c` prints the weather report for your current location in the terminal window. Running `wr 1` with give a shortened version of the report that is just one line. And yes this should be a bash or python script instead of a C prgoram
 
 # md2pdf
 `md2pdf.py` converts a markdown file to a PDF with pandoc and a LaTeX compiler. Needs more work to be made portable and cross-platform.

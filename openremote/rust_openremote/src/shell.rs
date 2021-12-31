@@ -1,7 +1,7 @@
 use std::process::{Command};
 use std::env;
 
-pub fn sys_command(command:String) -> std::process::Output {
+pub fn cmd_output(command:&str) -> String {
 
     // See if on windows 
     let windows = cfg!(target_os = "windows");
@@ -19,11 +19,14 @@ pub fn sys_command(command:String) -> std::process::Output {
         prog_flag = "-c";
     }
 
+    let command = String::from(command);
     let output = Command::new(prog)
                 .arg(prog_flag) // this is important but idk why
                 .arg(command)
                 .output()
                 .expect("Command failed to execute");
+
+    let output = String::from_utf8(output.stdout).unwrap();
 
     return output;
 }
@@ -39,9 +42,9 @@ pub fn is_repo() -> bool {
         return false;
     }
     else{
-        let check_if_repo_cmd = String::from("git rev-parse --is-inside-work-tree");
-        let output = sys_command(check_if_repo_cmd);
-        let output = &String::from_utf8(output.stdout).unwrap()[..];
+        let check_if_repo_cmd = "git rev-parse --is-inside-work-tree";
+        let output = cmd_output(check_if_repo_cmd);
+        let output = &output[..];
 
         match output {
             "true\n" => return true,

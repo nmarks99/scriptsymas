@@ -1,14 +1,49 @@
 use std::process::{Command};
 use std::env;
 
-pub fn cmd_output(command:&str) -> String {
+pub fn is_windows() -> bool {
+    if cfg!(target_os = "windows") {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+pub fn cmd(command:&str) {
 
     // See if on windows 
-    let windows = cfg!(target_os = "windows");
     let prog:&str;
     let prog_flag:&str;
 
-    if windows == true {
+    if is_windows() {
+        prog = "cmd";
+        prog_flag = "/C";
+    }
+    else{
+        // Presumably the other option is a UNIX machine with "sh"
+        // If you have git-bash on windows this works for windows too
+        prog = "sh";
+        prog_flag = "-c";
+    }
+
+    let command = String::from(command);
+    Command::new(prog)
+                .arg(prog_flag) // this is important but idk why
+                .arg(command)
+                .output()
+                .expect("Command failed to execute");
+
+
+}
+
+pub fn cmd_output(command:&str) -> String {
+
+    // See if on windows 
+    let prog:&str;
+    let prog_flag:&str;
+
+    if is_windows() {
         prog = "cmd";
         prog_flag = "/C";
     }

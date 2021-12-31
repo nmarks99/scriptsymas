@@ -13,7 +13,6 @@ fn main() {
         cmd_output = shell::cmd_output(get_repo_url_cmd);
 
         // Make a string from the output
-        // let cmd_output = String::from_utf8(cmd_output.stdout).unwrap();
         let repo_link:&str = &cmd_output[..];
         
         // Open url in browser

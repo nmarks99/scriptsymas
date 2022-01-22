@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-// TODO: Add more command line options
+// This is written in C for absolutely no good reason 
+// A real man would write this in bash 
+
 
 int main(int argc, char *argv[]) {
 

@@ -1,2 +1,4 @@
 # openremote
 Have you ever wanted to be able open the GitHub page of your repository in your browser with a single word command in your terminal? This is what `openremote` does. Here you will find two implementations, one in Python and one in Rust. The rust version is better and more complete but the python version is probably simpler. Both are short and easily modifiable to meet your more specific needs. Enjoy.
+
+## Okay yes a bash script can do this in one line...

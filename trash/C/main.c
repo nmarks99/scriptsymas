@@ -1,3 +1,6 @@
+#define __USE_XOPEN
+#define _GNU_SOURCE
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -5,23 +8,32 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-void getFileCreationTime(char *filePath) {
+void get_file_modification_time(char *filePath, char *date_buff) {
     struct stat attrib;
     stat(filePath, &attrib);
-    char date[10];
-    strftime(date, 10, "%d-%m-%y", gmtime(&(attrib.st_ctime)));
-    printf("The file %s was last modified at %s\n", filePath, date);
-    date[0] = 0;
+    strftime(date_buff, 10, "%d-%m-%y", gmtime(&(attrib.st_ctime)));
+    /* printf("The file %s was last modified at %s\n", filePath, date); */
+    /* date[0] = 0; */
 }
 
 int main(int argc, char *argv[]) {
+    char date[20]; 
+    get_file_modification_time("../../rmspace.py",date); 
+    struct tm tm;
+    time_t epoch;
+    if ( strptime(date, "%Y-%m-%d %H:%M:%S", &tm) != NULL) {
+        epoch = mktime(&tm);
+    }
+    else {
+        printf("hmm");
+        //badness
+    }
 
-    get_file_modification_time("../rmspace.py");
+    printf("unix time = %ld\n",epoch);
+
+    /* get_file_modification_time("../../rmspace.py"); */
 
 
-    // char cmd[50];
-    // sprintf(cmd,"mv %s ~/.trash/",argv[1]);
-    // system(cmd); 
     return 0;
 }
 

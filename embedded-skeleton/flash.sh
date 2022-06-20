@@ -7,6 +7,8 @@
 # need to have avr-gcc and avr-libc installed
 # sudo apt install avr-gcc avr-libc
 
+# also need this version of nightly for some reason
+# rustup override set nightly-2021-01-07
 
 # Check if this is a rust project
 # Presumably if there is a Cargo.toml file this is rust...
